@@ -116,10 +116,10 @@ function Baby(name, age, favoriteToy) {
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. whenever a function is used with a preceding dot the object before the dot is this
+  2. if a function is contained in the global scope the value of this inside of the the function will be the object
+  3. this refers to the specific instance of the object in a constructor function and gets returned by that constructor function
+  4. if js's call or apply methods are used, this is defined
 */
 
 
