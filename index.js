@@ -39,9 +39,28 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age, somethingEdible) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
+  this.somethingEdible = somethingEdible
 }
+Person.prototype.eat = function(someFood) {
+  if (this.stomach.length < 10) {
+     this.stomach.push(someFood)
+  }
+}
+Person.prototype.poop = function() {
+  this.stomach.length = 0;
+}
+Person.prototype.toString = function() {
+  return `${this.name}, ${this.age}`
+}
+const personOne = Person({
+  name: 'Dan',
+  age: 46
+});
+
 
 /*
   TASK 2
@@ -57,9 +76,24 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0; 
+  
+  this.drive = function(distance) {
+    let myRange = this.gallons * this.milesPerGallon;
+    distance = Math.min(myRange, distance);
+    odometer += distance;
+    tank -= distance / milesPerGallon;
+    return "I ran out of fuel at " +this.odometer+ " miles!"
+  }
+  Car.prototype.fill = function(gallons) {
+    this.tank += gallons;
+  }
 }
+
 
 /*
   TASK 3
@@ -68,18 +102,24 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  this.name = name;
+  this.age = age;
+  this.favoriteToy = favoriteToy;
+  Baby.prototype = Object.create(Person.prototype);
+  Baby.prototype.play = function(){
+    return `Playing with ${this.favoriteToy}`;
+  }
 }
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. whenever a function is used with a preceding dot the object before the dot is this
+  2. if a function is contained in the global scope the value of this inside of the the function will be the object
+  3. this refers to the specific instance of the object in a constructor function and gets returned by that constructor function
+  4. if js's call or apply methods are used, this is defined
 */
 
 
